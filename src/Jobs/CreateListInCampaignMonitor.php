@@ -42,8 +42,12 @@ class CreateListInCampaignMonitor implements ShouldQueue
             } else {
                 $this->fail($e);
             }
+
+            return;
         } catch (Throwable $e) {
             $this->fail($e);
+
+            return;
         }
 
         $listId = $response->response;

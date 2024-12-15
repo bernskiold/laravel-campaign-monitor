@@ -34,6 +34,6 @@ class LaravelCampaignMonitorServiceProvider extends ServiceProvider
             return new CampaignMonitor($apiKey);
         });
 
-        $this->app->alias(CampaignMonitor::class, 'laravel-fortnox');
+        $this->app->alias(CampaignMonitor::class, 'laravel-campaign-monitor');
     }
 }
