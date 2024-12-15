@@ -1,0 +1,62 @@
+{
+    "name": "bernskioldmedia/laravel-campaign-monitor",
+    "description": "A package for Laravel to interact with the Campaign Monitor API, including syncing subscribers.",
+    "keywords": [
+        "bernskioldmedia",
+        "laravel",
+        "campaign monitor"
+    ],
+    "homepage": "https://github.com/bernskioldmedia/laravel-campaign-monitor",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bernskiold Media",
+            "email": "hello@bernskioldmedia.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.2|^8.3",
+        "campaignmonitor/createsend-php": "*",
+        "illuminate/contracts": "^11.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^8.0",
+        "orchestra/testbench": "^9.0",
+        "pestphp/pest": "^2.0|^3.0",
+        "pestphp/pest-plugin-laravel": "^2.0|^v3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BernskioldMedia\\LaravelCampaignMonitor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BernskioldMedia\\LaravelCampaignMonitor\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BernskioldMedia\\LaravelCampaignMonitor\\LaravelCampaignMonitorServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    }
+}
