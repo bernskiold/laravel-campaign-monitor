@@ -11,4 +11,10 @@ interface CampaignMonitorSubscriber
     public function getCampaignMonitorUniqueJobIdentifier(): string;
 
     public function shouldSyncWithCampaignMonitor(): bool;
+
+    public function getCampaignMonitorListIds(): array;
+
+    public function getCampaignMonitorListsToResubscribe(): array;
+
+    public function getCampaignMonitorListsToRerunWorkflows(): array;
 }

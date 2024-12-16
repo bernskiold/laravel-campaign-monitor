@@ -14,4 +14,6 @@ interface CampaignMonitorList
     public function getCampaignMonitorListDetails(): ListDetails;
 
     public function getCampaignMonitorCustomFields(): ListCustomFields;
+
+    public function getCampaignMonitorListId(): ?string;
 }

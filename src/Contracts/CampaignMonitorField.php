@@ -13,4 +13,6 @@ interface CampaignMonitorField
     public function getCampaignMonitorUniqueJobIdentifier(): string;
 
     public function shouldSyncWithCampaignMonitor(): bool;
+
+    public function getCampaignMonitorListIds(): array;
 }

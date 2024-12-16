@@ -2,7 +2,8 @@
 
 namespace BernskioldMedia\LaravelCampaignMonitor\Jobs;
 
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorField;
+use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\DeleteList;
+use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
 use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Bus\Queueable;
@@ -14,48 +15,42 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
-class UpdateCustomFieldOptions implements ShouldQueue
+class DeleteCampaignMonitorList implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(
-        public CampaignMonitorField $model,
-        public string $listId,
+        public CampaignMonitorList $model
     ) {
         $this->onQueue('campaign-monitor');
     }
 
-    public function handle(): void
+    public function handle(DeleteList $deleteAction): void
     {
         try {
-
-            $response = CampaignMonitor::lists($this->listId)
-                ->update_field_options(
-                    $this->model->getCampaignMonitorFieldKey(),
-                    $this->model->getCampaignMonitorOptions(),
-                    false,
-                );
-
-            if (! $response->was_successful()) {
-                throw CampaignMonitorException::fromResponse($response);
-            }
+            $deleteAction->execute($this->model->getCampaignMonitorListId());
         } catch (CampaignMonitorException $e) {
             if ($e->hasExceededRateLimit()) {
                 $this->release(60);
             } else {
                 $this->fail($e);
             }
+
+            return;
         } catch (Throwable $e) {
             $this->fail($e);
+
+            return;
         }
     }
 
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping('cm-field-options:'.$this->model->getCampaignMonitorUniqueJobIdentifier()))
+            (new WithoutOverlapping('cm-delete-list:'.$this->model->getCampaignMonitorUniqueJobIdentifier()))
                 ->releaseAfter(5)
                 ->expireAfter(60),
+            Skip::when($this->model->getCampaignMonitorListId() === null),
             Skip::unless($this->model->shouldSyncWithCampaignMonitor() === true),
             Skip::unless(CampaignMonitor::isActive() === true),
         ];

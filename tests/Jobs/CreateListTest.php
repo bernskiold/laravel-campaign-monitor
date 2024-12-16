@@ -3,7 +3,7 @@
 use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
 use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorListCreated;
 use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateListInCampaignMonitor;
+use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorList;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 
@@ -30,7 +30,7 @@ it('creates list and dispatches event', function () {
     CampaignMonitor::shouldReceive('lists->create_custom_field')
         ->andReturn(true);
 
-    $job = new CreateListInCampaignMonitor($this->model);
+    $job = new CreateCampaignMonitorList($this->model);
     $job->handle();
 
     Event::assertDispatched(CampaignMonitorListCreated::class, function ($event) {

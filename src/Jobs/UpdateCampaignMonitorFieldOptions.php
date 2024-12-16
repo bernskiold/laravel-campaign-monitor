@@ -2,7 +2,8 @@
 
 namespace BernskioldMedia\LaravelCampaignMonitor\Jobs;
 
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
+use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\UpdateFieldOptions;
+use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorField;
 use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Bus\Queueable;
@@ -14,52 +15,45 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
-use function array_merge;
-
-class SubscribeInCampaignMonitor implements ShouldQueue
+class UpdateCampaignMonitorFieldOptions implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(
-        public CampaignMonitorSubscriber $model,
+        public CampaignMonitorField $model,
         public string $listId,
-        public bool $resubscribe = false,
-        public bool $restartWorkflows = false,
     ) {
         $this->onQueue('campaign-monitor');
     }
 
-    public function handle(): void
+    public function handle(UpdateFieldOptions $updateAction): void
     {
         try {
-            $details = array_merge(
-                [
-                    'Resubscribe' => $this->resubscribe,
-                    'RestartSubscriptionBasedAutoresponders' => $this->restartWorkflows,
-                ],
-                $this->model->getCampaignMonitorSubscriberDetails()->toApiRequest(),
+            $updateAction->execute(
+                listId: $this->listId,
+                fieldKey: $this->model->getCampaignMonitorFieldKey(),
+                options: $this->model->getCampaignMonitorOptions(),
+                keepExistingRecords: false,
             );
-
-            $response = CampaignMonitor::subscribers($this->listId)->add($details);
-
-            if (! $response->was_successful()) {
-                throw CampaignMonitorException::fromResponse($response);
-            }
         } catch (CampaignMonitorException $e) {
             if ($e->hasExceededRateLimit()) {
                 $this->release(60);
             } else {
                 $this->fail($e);
             }
+
+            return;
         } catch (Throwable $e) {
             $this->fail($e);
+
+            return;
         }
     }
 
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping('cm-subscribe:'.$this->model->getCampaignMonitorUniqueJobIdentifier()))
+            (new WithoutOverlapping('cm-field-options:'.$this->model->getCampaignMonitorUniqueJobIdentifier()))
                 ->releaseAfter(5)
                 ->expireAfter(60),
             Skip::unless($this->model->shouldSyncWithCampaignMonitor() === true),

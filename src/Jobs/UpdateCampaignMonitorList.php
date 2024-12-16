@@ -2,7 +2,9 @@
 
 namespace BernskioldMedia\LaravelCampaignMonitor\Jobs;
 
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
+use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\UpdateCustomField;
+use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\UpdateList;
+use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
 use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Bus\Queueable;
@@ -14,57 +16,55 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
-use function array_merge;
-
-class UpdateInCampaignMonitor implements ShouldQueue
+class UpdateCampaignMonitorList implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(
-        public CampaignMonitorSubscriber $model,
-        public string $listId,
-        public bool $resubscribe = false,
-        public bool $restartWorkflows = false,
+        public CampaignMonitorList $model
     ) {
         $this->onQueue('campaign-monitor');
     }
 
-    public function handle(): void
+    public function handle(UpdateList $updateAction, UpdateCustomField $updateFieldAction): void
     {
         try {
-            $subscriberDetails = $this->model->getCampaignMonitorSubscriberDetails();
-
-            $details = array_merge(
-                [
-                    'Resubscribe' => $this->resubscribe,
-                    'RestartSubscriptionBasedAutoresponders' => $this->restartWorkflows,
-                ],
-                $subscriberDetails->toApiRequest(),
+            $updateAction->execute(
+                $this->model->getCampaignMonitorListId(),
+                $this->model->getCampaignMonitorListDetails()->toApiRequest()
             );
-
-            $response = CampaignMonitor::subscribers($this->listId)
-                ->update($subscriberDetails->email, $details);
-
-            if (! $response->was_successful()) {
-                throw CampaignMonitorException::fromResponse($response);
-            }
         } catch (CampaignMonitorException $e) {
             if ($e->hasExceededRateLimit()) {
                 $this->release(60);
             } else {
                 $this->fail($e);
             }
+
+            return;
         } catch (Throwable $e) {
             $this->fail($e);
+
+            return;
+        }
+
+        $customFields = $this->model->getCampaignMonitorCustomFields();
+
+        foreach ($customFields->all() as $field) {
+            $updateFieldAction->execute(
+                listId: $this->model->getCampaignMonitorListId(),
+                fieldKey: $field->name,
+                data: $field->toApiRequest()
+            );
         }
     }
 
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping('cm-subscribe:'.$this->model->getCampaignMonitorUniqueJobIdentifier()))
+            (new WithoutOverlapping('cm-updated-list:'.$this->model->getCampaignMonitorUniqueJobIdentifier()))
                 ->releaseAfter(5)
                 ->expireAfter(60),
+            Skip::when($this->model->getCampaignMonitorListId() === null),
             Skip::unless($this->model->shouldSyncWithCampaignMonitor() === true),
             Skip::unless(CampaignMonitor::isActive() === true),
         ];

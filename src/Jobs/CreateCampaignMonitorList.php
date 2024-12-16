@@ -2,6 +2,8 @@
 
 namespace BernskioldMedia\LaravelCampaignMonitor\Jobs;
 
+use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\CreateCustomField;
+use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\CreateList;
 use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
 use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorListCreated;
 use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
@@ -15,7 +17,7 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
-class CreateListInCampaignMonitor implements ShouldQueue
+class CreateCampaignMonitorList implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -25,17 +27,10 @@ class CreateListInCampaignMonitor implements ShouldQueue
         $this->onQueue('campaign-monitor');
     }
 
-    public function handle(): void
+    public function handle(CreateList $createListAction, CreateCustomField $createCustomFieldAction): void
     {
         try {
-            $response = CampaignMonitor::lists()->create(
-                config('campaign-monitor.clientId'),
-                $this->model->getCampaignMonitorListDetails()->toApiRequest()
-            );
-
-            if (! $response->was_successful()) {
-                throw CampaignMonitorException::fromResponse($response);
-            }
+            $listId = $createListAction->execute($this->model->getCampaignMonitorListDetails()->toApiRequest());
         } catch (CampaignMonitorException $e) {
             if ($e->hasExceededRateLimit()) {
                 $this->release(60);
@@ -50,12 +45,10 @@ class CreateListInCampaignMonitor implements ShouldQueue
             return;
         }
 
-        $listId = $response->response;
         $customFields = $this->model->getCampaignMonitorCustomFields();
 
         foreach ($customFields->all() as $field) {
-            CampaignMonitor::lists($listId)
-                ->create_custom_field($field->toApiRequest());
+            $createCustomFieldAction->execute($listId, $field->toApiRequest());
         }
 
         event(new CampaignMonitorListCreated($this->model, $listId));

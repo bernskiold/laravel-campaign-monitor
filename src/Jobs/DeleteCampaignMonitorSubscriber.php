@@ -2,6 +2,7 @@
 
 namespace BernskioldMedia\LaravelCampaignMonitor\Jobs;
 
+use BernskioldMedia\LaravelCampaignMonitor\Actions\Subscribers\DeleteSubscriber;
 use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
 use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
@@ -14,7 +15,7 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
-class UnsubscribeFromCampaignMonitor implements ShouldQueue
+class DeleteCampaignMonitorSubscriber implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -25,23 +26,25 @@ class UnsubscribeFromCampaignMonitor implements ShouldQueue
         $this->onQueue('campaign-monitor');
     }
 
-    public function handle(): void
+    public function handle(DeleteSubscriber $deleteAction): void
     {
         try {
-            $response = CampaignMonitor::subscribers($this->listId)
-                ->unsubscribe($this->model->getCampaignMonitorSubscriberDetails()->email);
-
-            if (! $response->was_successful()) {
-                throw CampaignMonitorException::fromResponse($response);
-            }
+            $deleteAction->execute(
+                listId: $this->listId,
+                email: $this->model->getCampaignMonitorSubscriberDetails()->email,
+            );
         } catch (CampaignMonitorException $e) {
             if ($e->hasExceededRateLimit()) {
                 $this->release(60);
             } else {
                 $this->fail($e);
             }
+
+            return;
         } catch (Throwable $e) {
             $this->fail($e);
+
+            return;
         }
     }
 
