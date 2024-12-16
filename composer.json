@@ -19,8 +19,9 @@
     "prefer-stable": true,
     "require": {
         "php": "^8.2|^8.3",
-        "campaignmonitor/createsend-php": "*",
-        "illuminate/contracts": "^11.0"
+        "campaignmonitor/createsend-php": "^7.0",
+        "illuminate/contracts": "^11.0",
+        "laravel/prompts": "^0.1.18|^0.2.0|^0.3.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",

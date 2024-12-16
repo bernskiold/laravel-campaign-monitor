@@ -2,17 +2,21 @@
 
 namespace BernskioldMedia\LaravelCampaignMonitor\Events;
 
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
+use Carbon\CarbonInterface;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CampaignMonitorListCreated
+class CampaignMonitorSubscriberDeactivatedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public function __construct(
-        public CampaignMonitorList $model,
         public string $listId,
+        public string $email,
+        public ?string $name,
+        public string $state,
+        public CarbonInterface $date,
+        public array $customFields = [],
     ) {}
 }

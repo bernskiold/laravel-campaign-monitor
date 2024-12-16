@@ -1,7 +1,7 @@
 <?php
 
 use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorListCreated;
+use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorListCreatedEvent;
 use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorList;
 use Illuminate\Support\Facades\Config;
@@ -33,7 +33,7 @@ it('creates list and dispatches event', function () {
     $job = new CreateCampaignMonitorList($this->model);
     $job->handle();
 
-    Event::assertDispatched(CampaignMonitorListCreated::class, function ($event) {
+    Event::assertDispatched(CampaignMonitorListCreatedEvent::class, function ($event) {
         return $event->model === $this->model && $event->listId === 'list_id';
     });
 });

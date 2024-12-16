@@ -7,6 +7,8 @@ use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 
+use function config;
+
 class LaravelCampaignMonitorServiceProvider extends ServiceProvider
 {
     public function boot(): void
@@ -23,6 +25,11 @@ class LaravelCampaignMonitorServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/campaign-monitor.php', 'campaign-monitor'
         );
+
+        // Load the routes if webhooks are enabled.
+        if (config('campaign-monitor.webhooks.enabled', false) === true) {
+            $this->loadRoutesFrom(__DIR__.'/../routes/webhooks.php');
+        }
 
         $this->app->bind(CampaignMonitor::class, function () {
             $apiKey = config('campaign-monitor.apiKey');

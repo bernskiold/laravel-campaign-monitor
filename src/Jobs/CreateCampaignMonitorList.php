@@ -5,7 +5,7 @@ namespace BernskioldMedia\LaravelCampaignMonitor\Jobs;
 use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\CreateCustomField;
 use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\CreateList;
 use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorListCreated;
+use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorListCreatedEvent;
 use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Bus\Queueable;
@@ -51,7 +51,7 @@ class CreateCampaignMonitorList implements ShouldQueue
             $createCustomFieldAction->execute($listId, $field->toApiRequest());
         }
 
-        event(new CampaignMonitorListCreated($this->model, $listId));
+        event(new CampaignMonitorListCreatedEvent($this->model, $listId));
     }
 
     public function middleware(): array
