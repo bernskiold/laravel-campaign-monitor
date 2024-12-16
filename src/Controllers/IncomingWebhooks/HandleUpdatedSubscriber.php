@@ -2,6 +2,7 @@
 
 namespace BernskioldMedia\LaravelCampaignMonitor\Controllers\IncomingWebhooks;
 
+use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
 use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberUpdatedEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -22,7 +23,7 @@ class HandleUpdatedSubscriber
         }
 
         collect($body['Events'])
-            ->filter(fn ($event) => $event['Type'] === 'Update')
+            ->filter(fn ($event) => $event['Type'] === WebhookEvent::Update->value)
             ->filter(fn ($event) => ! empty($event['EmailAddress']))
             ->each(function ($event) use ($listId) {
                 $date = Carbon::make($event['Date']);
