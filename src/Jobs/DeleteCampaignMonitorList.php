@@ -27,8 +27,14 @@ class DeleteCampaignMonitorList implements ShouldQueue
 
     public function handle(DeleteList $deleteAction): void
     {
+        $listId = $this->model->getCampaignMonitorListId();
+
+        if ($listId === null) {
+            return;
+        }
+
         try {
-            $deleteAction->execute($this->model->getCampaignMonitorListId());
+            $deleteAction->execute($listId);
         } catch (CampaignMonitorException $e) {
             if ($e->hasExceededRateLimit()) {
                 $this->release(60);

@@ -16,6 +16,8 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
+use function is_null;
+
 class UpdateCampaignMonitorList implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -28,9 +30,15 @@ class UpdateCampaignMonitorList implements ShouldQueue
 
     public function handle(UpdateList $updateAction, UpdateCustomField $updateFieldAction): void
     {
+        $listId = $this->model->getCampaignMonitorListId();
+
+        if (is_null($listId)) {
+            return;
+        }
+
         try {
             $updateAction->execute(
-                $this->model->getCampaignMonitorListId(),
+                $listId,
                 $this->model->getCampaignMonitorListDetails()->toApiRequest()
             );
         } catch (CampaignMonitorException $e) {
@@ -51,7 +59,7 @@ class UpdateCampaignMonitorList implements ShouldQueue
 
         foreach ($customFields->all() as $field) {
             $updateFieldAction->execute(
-                listId: $this->model->getCampaignMonitorListId(),
+                listId: $listId,
                 fieldKey: $field->name,
                 data: $field->toApiRequest()
             );
