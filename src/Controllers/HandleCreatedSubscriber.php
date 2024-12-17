@@ -7,8 +7,6 @@ use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberSubsc
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-use function dispatch;
-
 class HandleCreatedSubscriber
 {
     public function __invoke(Request $request)

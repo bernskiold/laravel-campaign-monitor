@@ -1,17 +1,13 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorList;
 use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\CreateCustomField;
 use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\CreateList;
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorListCreatedEvent;
+use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorList;
 use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
-use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Queue;
 
 beforeEach(function () {
     Event::fake();

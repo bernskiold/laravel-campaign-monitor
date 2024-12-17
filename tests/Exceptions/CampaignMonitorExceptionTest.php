@@ -8,7 +8,7 @@ it('can instantiate missing API Key', function () {
 
 it('can instantiate from response', function () {
     $response = new CS_REST_Wrapper_Result(
-        response: (object)['Message' => 'This is a test message.'],
+        response: (object) ['Message' => 'This is a test message.'],
         code: 500
     );
 

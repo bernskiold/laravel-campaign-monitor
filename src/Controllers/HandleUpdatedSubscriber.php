@@ -7,8 +7,6 @@ use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberUpdat
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-use function dispatch;
-
 class HandleUpdatedSubscriber
 {
     public function __invoke(Request $request)

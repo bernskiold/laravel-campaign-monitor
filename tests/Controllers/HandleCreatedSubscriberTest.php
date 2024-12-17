@@ -76,4 +76,3 @@ it('filters events with empty email addresses', function () {
 
     Event::assertNotDispatched(CampaignMonitorSubscriberSubscribedEvent::class);
 });
-
