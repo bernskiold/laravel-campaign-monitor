@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Throwable;
 
+use function class_exists;
 use function Laravel\Prompts\progress;
 use function Laravel\Prompts\text;
 

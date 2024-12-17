@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Controllers\IncomingWebhooks;
+namespace BernskioldMedia\LaravelCampaignMonitor\Controllers;
 
 use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
 use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberUpdatedEvent;

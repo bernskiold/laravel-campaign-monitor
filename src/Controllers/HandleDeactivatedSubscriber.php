@@ -1,15 +1,13 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Controllers\IncomingWebhooks;
+namespace BernskioldMedia\LaravelCampaignMonitor\Controllers;
 
 use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
-use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberSubscribedEvent;
+use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberDeactivatedEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-use function dispatch;
-
-class HandleCreatedSubscriber
+class HandleDeactivatedSubscriber
 {
     public function __invoke(Request $request)
     {
@@ -19,21 +17,21 @@ class HandleCreatedSubscriber
         // If there is no list ID, we return early,
         // but with a positive response to Campaign Monitor.
         if (! $listId) {
-            return response();
+            return response('', 200);
         }
 
         collect($body['Events'])
-            ->filter(fn ($event) => $event['Type'] === WebhookEvent::Subscribe->value)
+            ->filter(fn ($event) => $event['Type'] === WebhookEvent::Deactivate->value)
             ->filter(fn ($event) => ! empty($event['EmailAddress']))
             ->each(function ($event) use ($listId) {
                 $date = Carbon::make($event['Date']);
 
-                dispatch(new CampaignMonitorSubscriberSubscribedEvent(
+                event(new CampaignMonitorSubscriberDeactivatedEvent(
                     listId: $listId,
                     email: $event['EmailAddress'],
                     name: $event['Name'] ?? null,
+                    state: $event['State'],
                     date: $date,
-                    ipAddress: $event['SignupIPAddress'] ?? null,
                     customFields: $event['CustomFields'] ?? [],
                 ));
             });

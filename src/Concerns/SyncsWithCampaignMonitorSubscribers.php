@@ -7,12 +7,13 @@ use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorSubscriber;
 use BernskioldMedia\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorSubscriber;
 use BernskioldMedia\LaravelCampaignMonitor\Jobs\UnsubscribeCampaignMonitorSubscriber;
 use BernskioldMedia\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorSubscriber;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use function dispatch;
 
 trait SyncsWithCampaignMonitorSubscribers
 {
-    public function bootSyncsWithCampaignMonitorSubscribers()
+    public static function bootSyncsWithCampaignMonitorSubscribers()
     {
         static::created(function (CampaignMonitorSubscriber $model) {
             if (! $model->shouldSyncWithCampaignMonitor()) {
@@ -57,32 +58,34 @@ trait SyncsWithCampaignMonitorSubscribers
             }
         });
 
-        static::forceDeleted(function (CampaignMonitorSubscriber $model) {
-            if (! $model->shouldSyncWithCampaignMonitor()) {
-                return;
-            }
+        if (in_array(SoftDeletes::class, class_uses(static::class))) {
+            static::forceDeleted(function (CampaignMonitorSubscriber $model) {
+                if (! $model->shouldSyncWithCampaignMonitor()) {
+                    return;
+                }
 
-            foreach ($model->getCampaignMonitorListIds() as $listId) {
-                dispatch(new DeleteCampaignMonitorSubscriber(
-                    model: $model,
-                    listId: $listId
-                ));
-            }
-        });
+                foreach ($model->getCampaignMonitorListIds() as $listId) {
+                    dispatch(new DeleteCampaignMonitorSubscriber(
+                        model: $model,
+                        listId: $listId
+                    ));
+                }
+            });
 
-        static::restored(function (CampaignMonitorSubscriber $model) {
-            if (! $model->shouldSyncWithCampaignMonitor()) {
-                return;
-            }
+            static::restored(function (CampaignMonitorSubscriber $model) {
+                if (! $model->shouldSyncWithCampaignMonitor()) {
+                    return;
+                }
 
-            foreach ($model->getCampaignMonitorListIds() as $listId) {
-                dispatch(new CreateCampaignMonitorSubscriber(
-                    model: $model,
-                    listId: $listId,
-                    resubscribe: true
-                ));
-            }
-        });
+                foreach ($model->getCampaignMonitorListIds() as $listId) {
+                    dispatch(new CreateCampaignMonitorSubscriber(
+                        model: $model,
+                        listId: $listId,
+                        resubscribe: true
+                    ));
+                }
+            });
+        }
     }
 
     public function getCampaignMonitorUniqueJobIdentifier(): string

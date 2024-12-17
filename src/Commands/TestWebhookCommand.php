@@ -2,7 +2,7 @@
 
 namespace BernskioldMedia\LaravelCampaignMonitor\Commands;
 
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
+use BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks\TestWebhook;
 use Illuminate\Console\Command;
 use Throwable;
 
@@ -14,7 +14,7 @@ class TestWebhookCommand extends Command
 
     protected $description = 'Sends a test payload to the endpoint specified for the given webhook.';
 
-    public function handle()
+    public function handle(TestWebhook $testAction)
     {
         $listId = $this->argument('listId');
         $webhookId = $this->argument('webhookId');
@@ -36,7 +36,7 @@ class TestWebhookCommand extends Command
         }
 
         try {
-            CampaignMonitor::lists($listId)->test_webhook($webhookId);
+            $testAction->execute($listId, $webhookId);
         } catch (Throwable $e) {
             $this->error($e->getMessage());
 

@@ -4,12 +4,15 @@ namespace BernskioldMedia\LaravelCampaignMonitor\Concerns;
 
 use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorField;
 use BernskioldMedia\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorFieldOptions;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
+use function class_uses;
 use function dispatch;
+use function in_array;
 
 trait SyncsWithCampaignMonitorField
 {
-    public function bootSyncsWithCampaignMonitorField()
+    public static function bootSyncsWithCampaignMonitorField()
     {
         static::created(function (CampaignMonitorField $model) {
             if (! $model->shouldSyncWithCampaignMonitor()) {
@@ -50,18 +53,20 @@ trait SyncsWithCampaignMonitorField
             }
         });
 
-        static::restored(function (CampaignMonitorField $model) {
-            if (! $model->shouldSyncWithCampaignMonitor()) {
-                return;
-            }
+        if (in_array(SoftDeletes::class, class_uses(static::class))) {
+            static::restored(function (CampaignMonitorField $model) {
+                if (! $model->shouldSyncWithCampaignMonitor()) {
+                    return;
+                }
 
-            foreach ($model->getCampaignMonitorListIds() as $listId) {
-                dispatch(new UpdateCampaignMonitorFieldOptions(
-                    model: $model,
-                    listId: $listId,
-                ));
-            }
-        });
+                foreach ($model->getCampaignMonitorListIds() as $listId) {
+                    dispatch(new UpdateCampaignMonitorFieldOptions(
+                        model: $model,
+                        listId: $listId,
+                    ));
+                }
+            });
+        }
     }
 
     public function getCampaignMonitorUniqueJobIdentifier(): string
@@ -76,7 +81,7 @@ trait SyncsWithCampaignMonitorField
         return true;
     }
 
-    protected function getCampaignMonitorListIds(): array
+    public function getCampaignMonitorListIds(): array
     {
         return [];
     }

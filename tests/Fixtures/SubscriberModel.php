@@ -17,4 +17,9 @@ class SubscriberModel extends Model implements CampaignMonitorSubscriber
     {
         return SubscriberDetails::make();
     }
+
+    public function getCampaignMonitorListIds(): array
+    {
+        return [];
+    }
 }

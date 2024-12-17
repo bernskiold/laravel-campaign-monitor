@@ -1,15 +1,15 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields;
+namespace BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks;
 
 use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
 
-class UpdateCustomField
+class TestWebhook
 {
-    public function execute(string $listId, string $fieldKey, array $data): mixed
+    public function execute(string $listId, string $webhookId): mixed
     {
-        $response = CampaignMonitor::lists($listId)->update_custom_field($fieldKey, $data);
+        $response = CampaignMonitor::lists($listId)->test_webhook($webhookId);
 
         if (! $response->was_successful()) {
             throw CampaignMonitorException::fromResponse($response);
