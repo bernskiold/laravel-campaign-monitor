@@ -12,7 +12,7 @@ class HandleDeactivatedSubscriber
     public function __invoke(Request $request)
     {
         $body = json_decode($request->getContent(), true);
-        $listId = $body['ListID'];
+        $listId = $body['ListID'] ?? null;
 
         // If there is no list ID, we return early,
         // but with a positive response to Campaign Monitor.

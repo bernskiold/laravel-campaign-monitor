@@ -1,7 +1,7 @@
 <?php
 
 use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
-use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberDeactivatedEvent;
+use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberUpdatedEvent;
 use Illuminate\Support\Facades\Event;
 
 use function Pest\Laravel\postJson;
@@ -12,13 +12,14 @@ beforeEach(function () {
     Event::fake();
 });
 
-it('handles a successful deactivation event', function () {
+it('handles a successful update event', function () {
     $data = [
         'ListID' => 'test-list-id',
         'Events' => [
             [
-                'Type' => WebhookEvent::Deactivate->value,
+                'Type' => WebhookEvent::Update->value,
                 'EmailAddress' => 'test@example.com',
+                'OldEmailAddress' => 'test@example.org',
                 'Name' => 'Test User',
                 'State' => 'Unsubscribed',
                 'Date' => now()->toIso8601String(),
@@ -27,10 +28,10 @@ it('handles a successful deactivation event', function () {
         ],
     ];
 
-    postJson('/webhooks/campaign-monitor/deactivated-subscriber', $data)
+    postJson('/webhooks/campaign-monitor/updated-subscriber', $data)
         ->assertSuccessful();
 
-    Event::assertDispatched(CampaignMonitorSubscriberDeactivatedEvent::class, function ($event) use ($data) {
+    Event::assertDispatched(CampaignMonitorSubscriberUpdatedEvent::class, function ($event) use ($data) {
         return $event->listId === $data['ListID'] &&
             $event->email === $data['Events'][0]['EmailAddress'] &&
             $event->name === $data['Events'][0]['Name'] &&
@@ -38,25 +39,26 @@ it('handles a successful deactivation event', function () {
     });
 });
 
-it('filters non-deactivated events', function () {
+it('filters non-updated events', function () {
     $data = [
         'ListID' => 'test-list-id',
         'Events' => [
             [
-                'Type' => 'Subscribe',
+                'Type' => 'NotUpdate',
                 'EmailAddress' => 'test@example.com',
+                'OldEmailAddress' => 'test@example.org',
                 'Name' => 'Test User',
-                'State' => 'Subscribed',
+                'State' => 'Unsubscribed',
                 'Date' => now()->toIso8601String(),
                 'CustomFields' => [],
             ],
         ],
     ];
 
-    postJson('/webhooks/campaign-monitor/deactivated-subscriber', $data)
+    postJson('/webhooks/campaign-monitor/updated-subscriber', $data)
         ->assertSuccessful();
 
-    Event::assertNotDispatched(CampaignMonitorSubscriberDeactivatedEvent::class);
+    Event::assertNotDispatched(CampaignMonitorSubscriberUpdatedEvent::class);
 });
 
 it('filters events with empty email addresses', function () {
@@ -64,8 +66,9 @@ it('filters events with empty email addresses', function () {
         'ListID' => 'test-list-id',
         'Events' => [
             [
-                'Type' => WebhookEvent::Deactivate->value,
+                'Type' => WebhookEvent::Update->value,
                 'EmailAddress' => '',
+                'OldEmailAddress' => '',
                 'Name' => 'Test User',
                 'State' => 'Unsubscribed',
                 'Date' => now()->toIso8601String(),
@@ -74,29 +77,8 @@ it('filters events with empty email addresses', function () {
         ],
     ];
 
-    postJson('/webhooks/campaign-monitor/deactivated-subscriber', $data)
+    postJson('/webhooks/campaign-monitor/updated-subscriber', $data)
         ->assertSuccessful();
 
-    Event::assertNotDispatched(CampaignMonitorSubscriberDeactivatedEvent::class);
-});
-
-it('handles missing list id', function () {
-    $data = [
-        'ListID' => null,
-        'Events' => [
-            [
-                'Type' => WebhookEvent::Deactivate->value,
-                'EmailAddress' => 'test@example.com',
-                'Name' => 'Test User',
-                'State' => 'Unsubscribed',
-                'Date' => now()->toIso8601String(),
-                'CustomFields' => [],
-            ],
-        ],
-    ];
-
-    postJson('/webhooks/campaign-monitor/deactivated-subscriber', $data)
-        ->assertSuccessful();
-
-    Event::assertNotDispatched(CampaignMonitorSubscriberDeactivatedEvent::class);
+    Event::assertNotDispatched(CampaignMonitorSubscriberUpdatedEvent::class);
 });

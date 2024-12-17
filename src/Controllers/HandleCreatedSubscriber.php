@@ -14,7 +14,7 @@ class HandleCreatedSubscriber
     public function __invoke(Request $request)
     {
         $body = json_decode($request->getContent(), true);
-        $listId = $body['ListID'];
+        $listId = $body['ListID'] ?? null;
 
         // If there is no list ID, we return early,
         // but with a positive response to Campaign Monitor.
@@ -28,7 +28,7 @@ class HandleCreatedSubscriber
             ->each(function ($event) use ($listId) {
                 $date = Carbon::make($event['Date']);
 
-                dispatch(new CampaignMonitorSubscriberSubscribedEvent(
+                event(new CampaignMonitorSubscriberSubscribedEvent(
                     listId: $listId,
                     email: $event['EmailAddress'],
                     name: $event['Name'] ?? null,

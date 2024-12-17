@@ -4,7 +4,7 @@ namespace BernskioldMedia\LaravelCampaignMonitor\Data;
 
 class ListDetails
 {
-    public string $title;
+    public string $title = '';
 
     public ?string $unsubscribePage = null;
 

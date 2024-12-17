@@ -33,7 +33,7 @@ return [
          * Control whether the application should handle
          * incoming webhooks from Campaign Monitor.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /**
          * The prefix for the incoming webhook routes.
@@ -56,7 +56,7 @@ return [
              * Handle the updated subscriber webhook.
              */
             'updatedSubscriber' => [
-                'enabled' => false,
+                'enabled' => true,
                 'route' => 'updated-subscriber',
                 'controller' => HandleUpdatedSubscriber::class,
             ],
@@ -65,7 +65,7 @@ return [
              * Handle the created subscriber webhook.
              */
             'createdSubscriber' => [
-                'enabled' => false,
+                'enabled' => true,
                 'route' => 'created-subscriber',
                 'controller' => HandleCreatedSubscriber::class,
             ],
@@ -74,7 +74,7 @@ return [
              * Handle the deactivated subscriber webhook.
              */
             'deactivatedSubscriber' => [
-                'enabled' => false,
+                'enabled' => true,
                 'route' => 'deactivated-subscriber',
                 'controller' => HandleDeactivatedSubscriber::class,
             ],
