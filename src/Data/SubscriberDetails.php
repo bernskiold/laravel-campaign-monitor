@@ -6,9 +6,9 @@ use Carbon\CarbonInterface;
 
 class SubscriberDetails
 {
-    public string $email;
+    public string $email = '';
 
-    public string $name;
+    public string $name = '';
 
     public ?string $mobileNumber = null;
 
