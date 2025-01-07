@@ -1,9 +1,9 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Subscribers\DeleteSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\SubscriberModel;
+use Bernskiold\LaravelCampaignMonitor\Actions\Subscribers\DeleteSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\SubscriberModel;
 use Illuminate\Support\Facades\Config;
 
 it('runs successfully', function () {

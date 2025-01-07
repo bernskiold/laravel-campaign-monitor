@@ -1,9 +1,9 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Commands;
+namespace Bernskiold\LaravelCampaignMonitor\Commands;
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Subscribers\ImportSubscribers;
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Actions\Subscribers\ImportSubscribers;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Throwable;

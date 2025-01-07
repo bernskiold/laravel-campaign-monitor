@@ -1,9 +1,9 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures;
+namespace Bernskiold\LaravelCampaignMonitor\Tests\Fixtures;
 
-use BernskioldMedia\LaravelCampaignMonitor\Concerns\SyncsWithCampaignMonitorField;
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorField;
+use Bernskiold\LaravelCampaignMonitor\Concerns\SyncsWithCampaignMonitorField;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorField;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor;
+namespace Bernskiold\LaravelCampaignMonitor;
 
-use BernskioldMedia\LaravelCampaignMonitor\Api\CampaignMonitor;
-use BernskioldMedia\LaravelCampaignMonitor\Commands\ActivateWebhookCommand;
-use BernskioldMedia\LaravelCampaignMonitor\Commands\CreateWebhookCommand;
-use BernskioldMedia\LaravelCampaignMonitor\Commands\DeactivateWebhookCommand;
-use BernskioldMedia\LaravelCampaignMonitor\Commands\DeleteWebhookCommand;
-use BernskioldMedia\LaravelCampaignMonitor\Commands\ImportSubscribersCommand;
-use BernskioldMedia\LaravelCampaignMonitor\Commands\ListWebhooksCommand;
-use BernskioldMedia\LaravelCampaignMonitor\Commands\TestWebhookCommand;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Api\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Commands\ActivateWebhookCommand;
+use Bernskiold\LaravelCampaignMonitor\Commands\CreateWebhookCommand;
+use Bernskiold\LaravelCampaignMonitor\Commands\DeactivateWebhookCommand;
+use Bernskiold\LaravelCampaignMonitor\Commands\DeleteWebhookCommand;
+use Bernskiold\LaravelCampaignMonitor\Commands\ImportSubscribersCommand;
+use Bernskiold\LaravelCampaignMonitor\Commands\ListWebhooksCommand;
+use Bernskiold\LaravelCampaignMonitor\Commands\TestWebhookCommand;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 

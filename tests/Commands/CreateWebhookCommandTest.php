@@ -1,7 +1,7 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks\CreateWebhook;
-use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
+use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\CreateWebhook;
+use Bernskiold\LaravelCampaignMonitor\Enum\WebhookEvent;
 
 it('asks for required parameters', function () {
     $this->mock(CreateWebhook::class)

@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Data\SubscriberDetails;
+use Bernskiold\LaravelCampaignMonitor\Data\SubscriberDetails;
 
 use function Pest\Laravel\freezeTime;
 

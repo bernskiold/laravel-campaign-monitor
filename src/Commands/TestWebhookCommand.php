@@ -1,8 +1,8 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Commands;
+namespace Bernskiold\LaravelCampaignMonitor\Commands;
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks\TestWebhook;
+use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\TestWebhook;
 use Illuminate\Console\Command;
 use Throwable;
 

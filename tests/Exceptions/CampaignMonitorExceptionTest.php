@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 
 it('can instantiate missing API Key', function () {
     throw CampaignMonitorException::missingApiKey();

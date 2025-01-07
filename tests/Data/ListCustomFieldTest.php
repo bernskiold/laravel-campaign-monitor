@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Data\ListCustomField;
+use Bernskiold\LaravelCampaignMonitor\Data\ListCustomField;
 
 it('can build text field', function () {
     $details = ListCustomField::make()

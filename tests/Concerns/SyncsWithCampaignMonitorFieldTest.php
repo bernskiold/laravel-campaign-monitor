@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\FieldModel;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\FieldModel;
 
 it('can generate a unique job identifier', function () {
     $model = FieldModel::make([
@@ -8,5 +8,5 @@ it('can generate a unique job identifier', function () {
     ]);
 
     expect($model->getCampaignMonitorUniqueJobIdentifier())
-        ->toBe('bernskioldmedialaravelcampaignmonitortestsfixturesfieldmodel');
+        ->toBe('bernskioldlaravelcampaignmonitortestsfixturesfieldmodel');
 });

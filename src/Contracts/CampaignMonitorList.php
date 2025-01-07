@@ -1,9 +1,9 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Contracts;
+namespace Bernskiold\LaravelCampaignMonitor\Contracts;
 
-use BernskioldMedia\LaravelCampaignMonitor\Data\ListCustomFields;
-use BernskioldMedia\LaravelCampaignMonitor\Data\ListDetails;
+use Bernskiold\LaravelCampaignMonitor\Data\ListCustomFields;
+use Bernskiold\LaravelCampaignMonitor\Data\ListDetails;
 
 interface CampaignMonitorList
 {

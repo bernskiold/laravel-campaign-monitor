@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Data;
+namespace Bernskiold\LaravelCampaignMonitor\Data;
 
 use Carbon\CarbonInterface;
 

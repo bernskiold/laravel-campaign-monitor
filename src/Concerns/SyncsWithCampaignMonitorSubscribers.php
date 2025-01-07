@@ -1,12 +1,12 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Concerns;
+namespace Bernskiold\LaravelCampaignMonitor\Concerns;
 
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\UnsubscribeCampaignMonitorSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Jobs\UnsubscribeCampaignMonitorSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorSubscriber;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use function dispatch;

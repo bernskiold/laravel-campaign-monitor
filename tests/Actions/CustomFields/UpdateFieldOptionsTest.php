@@ -1,7 +1,7 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\UpdateFieldOptions;
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Actions\CustomFields\UpdateFieldOptions;
+use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {
@@ -43,4 +43,4 @@ it('returns an exception if not successful', function () {
         ],
     );
 })
-    ->throws(BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);
+    ->throws(Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);

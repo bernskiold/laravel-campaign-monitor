@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Facades;
+namespace Bernskiold\LaravelCampaignMonitor\Facades;
 
 use CS_REST_Campaigns;
 use CS_REST_Clients;

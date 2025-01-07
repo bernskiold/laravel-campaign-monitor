@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Api;
+namespace Bernskiold\LaravelCampaignMonitor\Api;
 
 use CS_REST_Campaigns;
 use CS_REST_Clients;

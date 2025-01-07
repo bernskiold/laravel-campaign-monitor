@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks\TestWebhook;
+use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\TestWebhook;
 
 it('asks for list ID and webhook ID if not provided', function () {
     $this->mock(TestWebhook::class)

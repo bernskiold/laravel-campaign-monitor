@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Data\ListDetails;
+use Bernskiold\LaravelCampaignMonitor\Data\ListDetails;
 
 it('can build a basic request', function () {
     $details = ListDetails::make()->title('My List');

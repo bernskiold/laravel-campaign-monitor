@@ -1,12 +1,12 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Jobs;
+namespace Bernskiold\LaravelCampaignMonitor\Jobs;
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\UpdateCustomField;
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\UpdateList;
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Actions\CustomFields\UpdateCustomField;
+use Bernskiold\LaravelCampaignMonitor\Actions\Lists\UpdateList;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

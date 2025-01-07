@@ -1,7 +1,7 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\DeleteList;
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Actions\Lists\DeleteList;
+use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {
@@ -29,4 +29,4 @@ it('returns an exception if not successful', function () {
 
     app(DeleteList::class)->execute('list-id');
 })
-    ->throws(BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);
+    ->throws(Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);

@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Contracts;
+namespace Bernskiold\LaravelCampaignMonitor\Contracts;
 
 use Illuminate\Contracts\Support\Arrayable;
 

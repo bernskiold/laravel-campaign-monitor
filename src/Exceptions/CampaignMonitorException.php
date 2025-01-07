@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Exceptions;
+namespace Bernskiold\LaravelCampaignMonitor\Exceptions;
 
 use CS_REST_Wrapper_Result;
 use Exception;

@@ -1,7 +1,7 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Subscribers\ImportSubscribers;
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\SubscriberModelWithoutContract;
+use Bernskiold\LaravelCampaignMonitor\Actions\Subscribers\ImportSubscribers;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\SubscriberModelWithoutContract;
 
 it('fails validation if the model does not exist', function () {
     $this->mock(ImportSubscribers::class)

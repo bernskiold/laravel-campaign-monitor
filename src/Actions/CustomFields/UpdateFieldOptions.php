@@ -1,9 +1,9 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields;
+namespace Bernskiold\LaravelCampaignMonitor\Actions\CustomFields;
 
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 
 class UpdateFieldOptions
 {

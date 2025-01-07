@@ -1,11 +1,11 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures;
+namespace Bernskiold\LaravelCampaignMonitor\Tests\Fixtures;
 
-use BernskioldMedia\LaravelCampaignMonitor\Concerns\SyncsWithCampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Data\ListCustomFields;
-use BernskioldMedia\LaravelCampaignMonitor\Data\ListDetails;
+use Bernskiold\LaravelCampaignMonitor\Concerns\SyncsWithCampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Data\ListCustomFields;
+use Bernskiold\LaravelCampaignMonitor\Data\ListDetails;
 use Illuminate\Database\Eloquent\Model;
 
 class ListModel extends Model implements CampaignMonitorList

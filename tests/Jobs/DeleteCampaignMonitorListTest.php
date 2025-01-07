@@ -1,9 +1,9 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\DeleteList;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
+use Bernskiold\LaravelCampaignMonitor\Actions\Lists\DeleteList;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {

@@ -1,10 +1,10 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures;
+namespace Bernskiold\LaravelCampaignMonitor\Tests\Fixtures;
 
-use BernskioldMedia\LaravelCampaignMonitor\Concerns\SyncsWithCampaignMonitorSubscribers;
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Data\SubscriberDetails;
+use Bernskiold\LaravelCampaignMonitor\Concerns\SyncsWithCampaignMonitorSubscribers;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Data\SubscriberDetails;
 use Illuminate\Database\Eloquent\Model;
 
 class SubscriberModel extends Model implements CampaignMonitorSubscriber

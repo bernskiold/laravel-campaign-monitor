@@ -1,11 +1,11 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Concerns;
+namespace Bernskiold\LaravelCampaignMonitor\Concerns;
 
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Jobs\DeleteCampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorList;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use function class_uses;

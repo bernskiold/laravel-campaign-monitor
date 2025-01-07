@@ -1,7 +1,7 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Data\ListCustomField;
-use BernskioldMedia\LaravelCampaignMonitor\Data\ListCustomFields;
+use Bernskiold\LaravelCampaignMonitor\Data\ListCustomField;
+use Bernskiold\LaravelCampaignMonitor\Data\ListCustomFields;
 
 it('can get fields', function () {
 

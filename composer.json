@@ -1,17 +1,17 @@
 {
-    "name": "bernskioldmedia/laravel-campaign-monitor",
+    "name": "bernskiold/laravel-campaign-monitor",
     "description": "A package for Laravel to interact with the Campaign Monitor API, including syncing subscribers.",
     "keywords": [
-        "bernskioldmedia",
+        "bernskiold",
         "laravel",
         "campaign monitor"
     ],
-    "homepage": "https://github.com/bernskioldmedia/laravel-campaign-monitor",
+    "homepage": "https://github.com/bernskiold/laravel-campaign-monitor",
     "license": "MIT",
     "authors": [
         {
-            "name": "Bernskiold Media",
-            "email": "hello@bernskioldmedia.com",
+            "name": "Bernskiold",
+            "email": "hello@bernskiold.com",
             "role": "Developer"
         }
     ],
@@ -32,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BernskioldMedia\\LaravelCampaignMonitor\\": "src/"
+            "Bernskiold\\LaravelCampaignMonitor\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BernskioldMedia\\LaravelCampaignMonitor\\Tests\\": "tests/"
+            "Bernskiold\\LaravelCampaignMonitor\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -50,7 +50,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BernskioldMedia\\LaravelCampaignMonitor\\LaravelCampaignMonitorServiceProvider"
+                "Bernskiold\\LaravelCampaignMonitor\\LaravelCampaignMonitorServiceProvider"
             ]
         }
     },

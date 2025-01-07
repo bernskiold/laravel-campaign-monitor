@@ -1,7 +1,7 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\CreateList;
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Actions\Lists\CreateList;
+use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {
@@ -33,4 +33,4 @@ it('returns an exception if not successful', function () {
         'key' => 'value',
     ]);
 })
-    ->throws(BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);
+    ->throws(Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);

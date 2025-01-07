@@ -1,7 +1,7 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
-use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberDeactivatedEvent;
+use Bernskiold\LaravelCampaignMonitor\Enum\WebhookEvent;
+use Bernskiold\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberDeactivatedEvent;
 use Illuminate\Support\Facades\Event;
 
 use function Pest\Laravel\postJson;

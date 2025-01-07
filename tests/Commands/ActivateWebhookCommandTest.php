@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks\ActivateWebhook;
+use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\ActivateWebhook;
 
 it('asks for list ID and webhook ID if not provided', function () {
     $this->mock(ActivateWebhook::class)

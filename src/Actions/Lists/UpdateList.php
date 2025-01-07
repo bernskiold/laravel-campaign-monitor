@@ -1,9 +1,9 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Actions\Lists;
+namespace Bernskiold\LaravelCampaignMonitor\Actions\Lists;
 
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 
 class UpdateList
 {

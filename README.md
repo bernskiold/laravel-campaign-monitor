@@ -1,9 +1,9 @@
 # A package for Laravel to interact with the Campaign Monitor API, including syncing subscribers.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/bernskioldmedia/laravel-campaign-monitor.svg?style=flat-square)](https://packagist.org/packages/bernskioldmedia/laravel-campaign-monitor)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/bernskioldmedia/laravel-campaign-monitor/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/bernskioldmedia/laravel-campaign-monitor/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/bernskioldmedia/laravel-campaign-monitor/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/bernskioldmedia/laravel-campaign-monitor/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/bernskioldmedia/laravel-campaign-monitor.svg?style=flat-square)](https://packagist.org/packages/bernskioldmedia/laravel-campaign-monitor)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bernskiold/laravel-campaign-monitor.svg?style=flat-square)](https://packagist.org/packages/bernskiold/laravel-campaign-monitor)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/bernskiold/laravel-campaign-monitor/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/bernskiold/laravel-campaign-monitor/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/bernskiold/laravel-campaign-monitor/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/bernskiold/laravel-campaign-monitor/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/bernskiold/laravel-campaign-monitor.svg?style=flat-square)](https://packagist.org/packages/bernskiold/laravel-campaign-monitor)
 
 ## Installation & Usage
 
@@ -26,7 +26,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [Bernskiold Media](https://github.com/bernskioldmedia)
+- [Bernskiold](https://github.com/bernskiold)
 - [All Contributors](../../contributors)
 
 ## License

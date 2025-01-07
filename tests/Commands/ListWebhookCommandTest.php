@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks\GetWebhooks;
+use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\GetWebhooks;
 
 it('asks for list ID if not provided', function () {
     $this->mock(GetWebhooks::class)

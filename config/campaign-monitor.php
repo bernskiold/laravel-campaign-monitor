@@ -1,8 +1,8 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Controllers\HandleCreatedSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Controllers\HandleDeactivatedSubscriber;
-use BernskioldMedia\LaravelCampaignMonitor\Controllers\HandleUpdatedSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Controllers\HandleCreatedSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Controllers\HandleDeactivatedSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Controllers\HandleUpdatedSubscriber;
 
 return [
 

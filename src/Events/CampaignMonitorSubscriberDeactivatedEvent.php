@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Events;
+namespace Bernskiold\LaravelCampaignMonitor\Events;
 
 use Carbon\CarbonInterface;
 use Illuminate\Broadcasting\InteractsWithSockets;

@@ -1,9 +1,9 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Concerns;
+namespace Bernskiold\LaravelCampaignMonitor\Concerns;
 
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorField;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorFieldOptions;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorField;
+use Bernskiold\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorFieldOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use function class_uses;

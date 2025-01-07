@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Api\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Api\CampaignMonitor;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {

@@ -1,11 +1,11 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Jobs;
+namespace Bernskiold\LaravelCampaignMonitor\Jobs;
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\DeleteList;
-use BernskioldMedia\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Facades\CampaignMonitor;
+use Bernskiold\LaravelCampaignMonitor\Actions\Lists\DeleteList;
+use Bernskiold\LaravelCampaignMonitor\Contracts\CampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

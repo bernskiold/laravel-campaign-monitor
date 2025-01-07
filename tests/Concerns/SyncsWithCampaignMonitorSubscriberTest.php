@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\SubscriberModel;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\SubscriberModel;
 
 it('can generate a unique job identifier', function () {
     $model = SubscriberModel::make([
@@ -8,5 +8,5 @@ it('can generate a unique job identifier', function () {
     ]);
 
     expect($model->getCampaignMonitorUniqueJobIdentifier())
-        ->toBe('bernskioldmedialaravelcampaignmonitortestsfixturessubscribermodel-1');
+        ->toBe('bernskioldlaravelcampaignmonitortestsfixturessubscribermodel-1');
 });

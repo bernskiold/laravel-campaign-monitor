@@ -1,9 +1,9 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\UpdateFieldOptions;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorFieldOptions;
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\FieldModel;
+use Bernskiold\LaravelCampaignMonitor\Actions\CustomFields\UpdateFieldOptions;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorFieldOptions;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\FieldModel;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {

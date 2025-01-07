@@ -1,9 +1,9 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Commands;
+namespace Bernskiold\LaravelCampaignMonitor\Commands;
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks\CreateWebhook;
-use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
+use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\CreateWebhook;
+use Bernskiold\LaravelCampaignMonitor\Enum\WebhookEvent;
 use Illuminate\Console\Command;
 use Throwable;
 

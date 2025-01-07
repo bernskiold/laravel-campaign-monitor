@@ -1,7 +1,7 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
-use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberUpdatedEvent;
+use Bernskiold\LaravelCampaignMonitor\Enum\WebhookEvent;
+use Bernskiold\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberUpdatedEvent;
 use Illuminate\Support\Facades\Event;
 
 use function Pest\Laravel\postJson;

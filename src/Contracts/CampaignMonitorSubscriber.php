@@ -1,8 +1,8 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Contracts;
+namespace Bernskiold\LaravelCampaignMonitor\Contracts;
 
-use BernskioldMedia\LaravelCampaignMonitor\Data\SubscriberDetails;
+use Bernskiold\LaravelCampaignMonitor\Data\SubscriberDetails;
 
 interface CampaignMonitorSubscriber
 {

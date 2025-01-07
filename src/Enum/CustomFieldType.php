@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Enum;
+namespace Bernskiold\LaravelCampaignMonitor\Enum;
 
 enum CustomFieldType: string
 {

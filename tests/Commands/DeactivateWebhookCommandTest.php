@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Webhooks\DeactivateWebhook;
+use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\DeactivateWebhook;
 
 it('asks for list ID and webhook ID if not provided', function () {
     $this->mock(DeactivateWebhook::class)

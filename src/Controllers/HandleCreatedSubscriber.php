@@ -1,9 +1,9 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Controllers;
+namespace Bernskiold\LaravelCampaignMonitor\Controllers;
 
-use BernskioldMedia\LaravelCampaignMonitor\Enum\WebhookEvent;
-use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberSubscribedEvent;
+use Bernskiold\LaravelCampaignMonitor\Enum\WebhookEvent;
+use Bernskiold\LaravelCampaignMonitor\Events\CampaignMonitorSubscriberSubscribedEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 

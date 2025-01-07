@@ -1,8 +1,8 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Data;
+namespace Bernskiold\LaravelCampaignMonitor\Data;
 
-use BernskioldMedia\LaravelCampaignMonitor\Enum\CustomFieldType;
+use Bernskiold\LaravelCampaignMonitor\Enum\CustomFieldType;
 use Illuminate\Contracts\Support\Arrayable;
 
 class ListCustomField

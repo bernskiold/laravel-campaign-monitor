@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures;
+namespace Bernskiold\LaravelCampaignMonitor\Tests\Fixtures;
 
 use Illuminate\Database\Eloquent\Model;
 

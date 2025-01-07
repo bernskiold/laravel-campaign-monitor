@@ -1,10 +1,10 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\UpdateCustomField;
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\UpdateList;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
+use Bernskiold\LaravelCampaignMonitor\Actions\CustomFields\UpdateCustomField;
+use Bernskiold\LaravelCampaignMonitor\Actions\Lists\UpdateList;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {

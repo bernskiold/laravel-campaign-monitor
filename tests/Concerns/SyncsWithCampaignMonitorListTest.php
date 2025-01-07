@@ -1,6 +1,6 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
 
 it('can generate a unique job identifier', function () {
     $model = ListModel::make([
@@ -8,5 +8,5 @@ it('can generate a unique job identifier', function () {
     ]);
 
     expect($model->getCampaignMonitorUniqueJobIdentifier())
-        ->toBe('bernskioldmedialaravelcampaignmonitortestsfixtureslistmodel-1');
+        ->toBe('bernskioldlaravelcampaignmonitortestsfixtureslistmodel-1');
 });

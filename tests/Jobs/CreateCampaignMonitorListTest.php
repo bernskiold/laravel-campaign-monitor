@@ -1,11 +1,11 @@
 <?php
 
-use BernskioldMedia\LaravelCampaignMonitor\Actions\CustomFields\CreateCustomField;
-use BernskioldMedia\LaravelCampaignMonitor\Actions\Lists\CreateList;
-use BernskioldMedia\LaravelCampaignMonitor\Events\CampaignMonitorListCreatedEvent;
-use BernskioldMedia\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
-use BernskioldMedia\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorList;
-use BernskioldMedia\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
+use Bernskiold\LaravelCampaignMonitor\Actions\CustomFields\CreateCustomField;
+use Bernskiold\LaravelCampaignMonitor\Actions\Lists\CreateList;
+use Bernskiold\LaravelCampaignMonitor\Events\CampaignMonitorListCreatedEvent;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
+use Bernskiold\LaravelCampaignMonitor\Jobs\CreateCampaignMonitorList;
+use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\ListModel;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 
