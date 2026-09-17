@@ -41,9 +41,15 @@ class UpdateCampaignMonitorSubscriber implements ShouldQueue
         } catch (CampaignMonitorException $e) {
             if ($e->hasExceededRateLimit()) {
                 $this->release(60);
-            } else {
-                $this->fail($e);
+
+                return;
             }
+
+            if ($e->isSubscriberNotInList()) {
+                return;
+            }
+
+            $this->fail($e);
 
             return;
         } catch (Throwable $e) {
