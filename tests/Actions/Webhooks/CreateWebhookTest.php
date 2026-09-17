@@ -1,6 +1,7 @@
 <?php
 
 use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\CreateWebhook;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Support\Facades\Config;
 
@@ -37,4 +38,4 @@ it('returns an exception if not successful', function () {
         events: [],
     );
 })
-    ->throws(Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);
+    ->throws(CampaignMonitorException::class);

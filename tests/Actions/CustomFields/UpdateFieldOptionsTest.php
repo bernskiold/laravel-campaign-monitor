@@ -1,6 +1,7 @@
 <?php
 
 use Bernskiold\LaravelCampaignMonitor\Actions\CustomFields\UpdateFieldOptions;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Support\Facades\Config;
 
@@ -43,4 +44,4 @@ it('returns an exception if not successful', function () {
         ],
     );
 })
-    ->throws(Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);
+    ->throws(CampaignMonitorException::class);
