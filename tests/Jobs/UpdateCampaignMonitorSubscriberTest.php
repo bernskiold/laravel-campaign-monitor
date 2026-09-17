@@ -1,6 +1,7 @@
 <?php
 
 use Bernskiold\LaravelCampaignMonitor\Actions\Subscribers\UpdateSubscriber;
+use Bernskiold\LaravelCampaignMonitor\Enum\ApiErrorCode;
 use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use Bernskiold\LaravelCampaignMonitor\Jobs\UpdateCampaignMonitorSubscriber;
 use Bernskiold\LaravelCampaignMonitor\Tests\Fixtures\SubscriberModel;
@@ -44,6 +45,29 @@ it('releases the job when rate limit exceeded', function () {
     );
 
     $job->assertReleased(60);
+});
+
+it('does not fail the job when the subscriber is not in the list', function () {
+    Config::set('campaign-monitor.enabled', true);
+
+    $this->mock(UpdateSubscriber::class)
+        ->shouldReceive('execute')
+        ->andThrow(new CampaignMonitorException(
+            message: 'Subscriber not in list or has already been removed.',
+            code: 400,
+            apiErrorCode: ApiErrorCode::SubscriberNotInList,
+        ));
+
+    $job = (new UpdateCampaignMonitorSubscriber(
+        model: SubscriberModel::make(),
+        listId: 'list-id',
+    ))->withFakeQueueInteractions();
+    $job->handle(
+        app(UpdateSubscriber::class),
+    );
+
+    $job->assertNotFailed();
+    $job->assertNotReleased();
 });
 
 it('fails the job when another Campaign Monitor exception is thrown', function () {

@@ -1,6 +1,7 @@
 <?php
 
 use Bernskiold\LaravelCampaignMonitor\Actions\Lists\CreateList;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Support\Facades\Config;
 
@@ -33,4 +34,4 @@ it('returns an exception if not successful', function () {
         'key' => 'value',
     ]);
 })
-    ->throws(Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);
+    ->throws(CampaignMonitorException::class);

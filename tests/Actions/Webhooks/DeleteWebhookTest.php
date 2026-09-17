@@ -1,6 +1,7 @@
 <?php
 
 use Bernskiold\LaravelCampaignMonitor\Actions\Webhooks\DeleteWebhook;
+use Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException;
 use Bernskiold\LaravelCampaignMonitor\Facades\CampaignMonitor;
 use Illuminate\Support\Facades\Config;
 
@@ -35,4 +36,4 @@ it('returns an exception if not successful', function () {
         webhookId: 'webhook-id',
     );
 })
-    ->throws(Bernskiold\LaravelCampaignMonitor\Exceptions\CampaignMonitorException::class);
+    ->throws(CampaignMonitorException::class);
